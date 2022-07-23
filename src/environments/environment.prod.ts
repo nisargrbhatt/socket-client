@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrls: 'http://localhost:3000',
+  apiUrls: 'https://socket-server-nisarg.herokuapp.com',
 };
