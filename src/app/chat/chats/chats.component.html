@@ -1,0 +1,66 @@
+<mat-toolbar color="accent">
+  <span
+    *ngIf="
+      currentRoomData?.member1Id?._id === userId &&
+      currentRoomData?.member2Id?._id !== userId
+    "
+  >
+    {{ currentRoomData?.member2Id?.name }}
+  </span>
+
+  <span
+    *ngIf="
+      currentRoomData?.member2Id?._id === userId &&
+      currentRoomData?.member1Id?._id !== userId
+    "
+  >
+    {{ currentRoomData?.member1Id?.name }}
+  </span>
+
+  <span
+    *ngIf="
+      currentRoomData?.member2Id?._id === userId &&
+      currentRoomData?.member1Id?._id === userId
+    "
+  >
+    Me
+  </span>
+  <span class="spacer"></span>
+  <span *ngIf="typing.typing && typing.userId === receiverData?._id">
+    {{ receiverData?.name }} is typing
+  </span>
+  <span>{{ userConnected.includes(receiverId) ? "Active" : "Inactive" }}</span>
+</mat-toolbar>
+
+<div
+  class="main-list"
+  role="list"
+  #scrollMe
+  [scrollTop]="scrollMe.scrollHeight"
+>
+  <div class="main-list-item" *ngFor="let chat of chats" role="listitem">
+    <div class="sender-chat" *ngIf="sentByMe(chat)">
+      <p>{{ chat.message }}</p>
+      <p>{{ chat.read ? "Read" : "Not Read" }}</p>
+      <p>{{ chat.createdAt | date }}</p>
+      <p>{{ userId }}</p>
+    </div>
+    <div class="received-chat" *ngIf="!sentByMe(chat)">
+      <p>{{ chat.message }}</p>
+      <p>{{ chat.read ? "Read" : "Not Read" }}</p>
+      <p>{{ chat.createdAt | date }}</p>
+      <p>{{ userId }}</p>
+    </div>
+  </div>
+</div>
+<mat-form-field>
+  <mat-label>Message</mat-label>
+  <input
+    type="text"
+    [(ngModel)]="userMessage"
+    matInput
+    placeholder="Write a message"
+    (keypress)="enterKeyLocate($event)"
+    (keydown)="onKeyDown()"
+  />
+</mat-form-field>

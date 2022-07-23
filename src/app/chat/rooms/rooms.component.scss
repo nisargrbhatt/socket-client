@@ -1,0 +1,25 @@
+mat-list {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+mat-list-item {
+  width: 100%;
+  display: flex;
+  margin: 1rem 0;
+}
+
+.user-detail {
+  flex: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.user-action {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,15 @@
+<mat-list>
+  <mat-list-item *ngFor="let user of users">
+    <div class="user-detail">
+      <p>Name: {{ user.name }}</p>
+      <p>Email: {{ user.email }}</p>
+    </div>
+    <div class="user-action">
+      <button mat-raised-button color="primary" (click)="onSubmit(user._id)">
+        <mat-icon>create</mat-icon>
+        Create
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

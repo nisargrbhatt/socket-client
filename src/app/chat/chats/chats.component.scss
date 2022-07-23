@@ -1,0 +1,32 @@
+.main-list {
+  width: 100%;
+  max-height: 50vh;
+  height: 100%;
+  overflow: auto;
+}
+
+.main-list-item {
+  width: 100%;
+}
+
+.sender-chat {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.received-chat {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
