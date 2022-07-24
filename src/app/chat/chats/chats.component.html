@@ -26,7 +26,10 @@
     Me
   </span>
   <span class="spacer"></span>
-  <span *ngIf="typing.typing && typing.userId === receiverData?._id">
+  <span
+    style="padding-right: 5px"
+    *ngIf="typing.typing && typing.userId === receiverData?._id"
+  >
     {{ receiverData?.name }} is typing
   </span>
   <span>{{ userConnected.includes(receiverId) ? "Active" : "Inactive" }}</span>
@@ -40,16 +43,28 @@
 >
   <div class="main-list-item" *ngFor="let chat of chats" role="listitem">
     <div class="sender-chat" *ngIf="sentByMe(chat)">
-      <p>{{ chat.message }}</p>
-      <p>{{ chat.read ? "Read" : "Not Read" }}</p>
-      <p>{{ chat.createdAt | date }}</p>
-      <p>{{ userId }}</p>
+      <div class="chat-box">
+        <div class="message">
+          <p>{{ chat.message }}</p>
+        </div>
+        <div class="timestamp">
+          <p>{{ chat.createdAt | date: "short" }}</p>
+        </div>
+        <div class="status">
+          <mat-icon *ngIf="!chat.read">done</mat-icon>
+          <mat-icon *ngIf="chat.read">done_all</mat-icon>
+        </div>
+      </div>
     </div>
     <div class="received-chat" *ngIf="!sentByMe(chat)">
-      <p>{{ chat.message }}</p>
-      <p>{{ chat.read ? "Read" : "Not Read" }}</p>
-      <p>{{ chat.createdAt | date }}</p>
-      <p>{{ userId }}</p>
+      <div class="chat-box">
+        <div class="message">
+          <p>{{ chat.message }}</p>
+        </div>
+        <div class="timestamp">
+          <p>{{ chat.createdAt | date: "short" }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

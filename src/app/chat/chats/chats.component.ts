@@ -66,6 +66,28 @@ export class ChatsComponent implements OnInit, OnDestroy {
 
     this.subs.sink = this.chat.ChatObservable.subscribe((chats) => {
       this.chats = chats;
+      let filteredChat = this.chats.filter((chat) => {
+        if (!chat.read) {
+          if (typeof chat.receiverId === 'string') {
+            if (chat.receiverId === this.userId) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            if (chat.receiverId._id === this.userId) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        } else {
+          return false;
+        }
+      });
+      filteredChat.forEach((chat) => {
+        this.chat.readMessage(chat._id);
+      });
     });
 
     this.subs.sink = this.chat.RoomIdObservable.subscribe((roomId) => {
